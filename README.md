@@ -47,6 +47,10 @@ If you have anaconda installed on your system, these are the steps to setup pyth
    ```
    conda env create -f environment.yml --force
    ```
+   1. NOTE: if the environment already exists, make sure to remove it first
+       ```
+       conda remove --name template --all
+       ```
 4. Activate the environment
    ```
    conda activate template
@@ -56,3 +60,6 @@ If you have anaconda installed on your system, these are the steps to setup pyth
    conda deactivate
    ```
 6. NOTE: When using `anaconda`, ALL `pip ...` commands should be replaced with `python -m pip ...`
+
+## TODO
+1. For some reason, creating the environment also installs `numpy` and it shouldn't.  Fix this.
