@@ -1,0 +1,28 @@
+# pre-commit workflow
+#
+# Ensures the codebase passes the pre-commit stack.
+# We run this on GHA to catch issues in commits from contributors who haven't
+# set up pre-commit.
+
+name: pre-commit
+
+on: [push, pull_request]
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python environment
+      uses: actions/setup-python@v2
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install -r requirements-dev.txt
+
+    - name: Run pre-commit before code is pushed
+      uses: pre-commit/action@v2.0.3
