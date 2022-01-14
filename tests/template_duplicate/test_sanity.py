@@ -22,7 +22,7 @@ def test_upper():
 
 
 def test_increment():
-    assert increment(10) == 12
+    assert increment(10) == 11
 
 
 def test_raises():
