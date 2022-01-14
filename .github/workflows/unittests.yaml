@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: [3.6, 3.7, 3.8, 3.9, 3.10]
+        python-version: [3.6, 3.7, 3.8, 3.9]
       fail-fast: false
 
     steps:
@@ -35,6 +35,11 @@ jobs:
         python -m pip install --upgrade build
         python -m pip install --upgrade pytest
         python -m pip install -r requirements.txt
+
+    - name: Build and install package locally
+      run: |
+        python -m build
+        python -m pip install -e . --no-deps
 
     - name: Run unit tests
       run: pytest
