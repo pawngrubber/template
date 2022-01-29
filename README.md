@@ -5,7 +5,7 @@ Code is built in python 3.8, install python3.8 before continuing.  If you use `a
     ```
     python -m pip install --upgrade pip
     ```
-2. Navigate to the base directory `path/to/repository/projects/template`
+2. Navigate to the base directory
 3. Make sure you have the latest version of PyPA's build installed
     ```
     python -m pip install --upgrade build
@@ -24,7 +24,7 @@ Code is built in python 3.8, install python3.8 before continuing.  If you use `a
     ```
 
 ## Check style and unit tests
-1. Navigate to the base directory `path/to/repository/template/template` and install requirements for code style and formatting
+1. Navigate to the base directory and install requirements for code style and formatting
     ```
     python -m pip install -r requirements-dev.txt
     ```
@@ -46,7 +46,7 @@ If you have anaconda installed on your system, these are the steps to setup pyth
    conda update anaconda
    conda update --all
    ```
-3. Navigate to the base directory `path/to/repository/template/template`
+3. Navigate to the base directory
 4. The following command will create a new `conda` environment named `template`.  WARNING: This will overwrite any previous `template` environment you have on your system:
    ```
    conda env create -f environment.yml --force
