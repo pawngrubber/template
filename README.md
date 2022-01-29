@@ -36,6 +36,11 @@ Code is built in python 3.8, install python3.8 before continuing.  If you use `a
     ```
     pytest
     ```
+4. NOTE: you can automatically install available `mypy` types with:
+    ```
+    mypy --install-types
+    ```
+
 
 ## Install python via anaconda
 If you have anaconda installed on your system, these are the steps to setup python within anaconda for this project.

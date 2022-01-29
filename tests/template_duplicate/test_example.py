@@ -2,8 +2,8 @@ from template_duplicate import example
 
 
 def test_arange():
-    x = 5
-    assert len(example.arange(5)) == x
+    val_x = 5
+    assert len(example.arange(5)) == val_x
 
 
 def test_add_one():

@@ -1,12 +1,12 @@
-import pytest
+import pytest  # type: ignore[import]
 
 
-def upper(foo):
-    return foo.upper()
+def upper(val_x):
+    return val_x.upper()
 
 
-def increment(foo):
-    return foo + 1
+def increment(val_x):
+    return val_x + 1
 
 
 def raises():
