@@ -1,4 +1,4 @@
-import numpy as np  # type: ignore[type]
+import numpy as np  # type: ignore[import]
 
 
 def np_maximum(val_x, val_y):
