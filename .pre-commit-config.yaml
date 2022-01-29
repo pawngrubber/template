@@ -90,6 +90,12 @@ repos:
     hooks:
       - id: setup-cfg-fmt
 
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v0.720
+    hooks:
+    -   id: mypy
+        args: []
+
   - repo: https://github.com/PyCQA/flake8
     rev: 4.0.1
     hooks:
@@ -98,5 +104,6 @@ repos:
           - flake8-2020
           - flake8-bugbear
           - flake8-comprehensions
-          #- flake8-docstrings # Raises an error, not sure why
+          - flake8-docstrings
           - flake8-implicit-str-concat
+          - flake8-variables-names
