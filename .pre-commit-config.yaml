@@ -18,6 +18,7 @@ repos:
             - "--target-version=py37"
             - "--target-version=py38"
             - "--target-version=py39"
+            - "--target-version=py310"
         types: [python]
 
   - repo: https://github.com/asottile/blacken-docs
@@ -41,6 +42,7 @@ repos:
             - "--target-version=py37"
             - "--target-version=py38"
             - "--target-version=py39"
+            - "--target-version=py310"
         additional_dependencies: [black==21.12b0]
       - id: nbqa-flake8
 
@@ -104,4 +106,5 @@ repos:
           - flake8-comprehensions
           - flake8-docstrings
           - flake8-implicit-str-concat
-          - flake8-variables-names
+          - flake8-builtins
+          - pep8-naming
