@@ -1,3 +1,13 @@
+This repository is a template for future repositories.  Features:
+- Can be packaged with `pip`
+- Has structure for unit testing in the `tests` directory with working `pytest` tests
+- Has separate `requirements.txt` and `requirements-dev.txt` files for streamlined use
+- Prepared `environment.yml` file for making a fresh Anaconda environment
+- `README.md` file with working instructions
+- Style checks using `flake8`, `mypy`, and `black` all bundled into a single `pre-commit` action
+- Automated testing using Github Actions in multiple Python versions
+- Uses Python 3.9, the latest version of Python I want to use (TensorFlow doesn't yet support Python 3.10)
+
 Code is built in python 3.9, install python3.9 before continuing.  If you use `anaconda` then jump to the `Install python via anaconda` section at the bottom before completing these steps.  
 
 ## Build this package
