@@ -1,6 +1,7 @@
 import numbers
 
-import numpy as np  # type: ignore[import]
+import numpy as np
+import numpy.typing
 
 
 def arange(number: int) -> np.typing.ArrayLike:
