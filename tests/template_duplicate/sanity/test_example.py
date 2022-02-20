@@ -1,6 +1,6 @@
 import pytest  # type: ignore[import]
 
-from template import sanity
+from template_duplicate import sanity
 
 
 # The real sanity test

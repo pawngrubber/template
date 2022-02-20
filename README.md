@@ -42,7 +42,7 @@ This repository is a template for future repositories.  Features:
     ```
     python -m pip install -r requirements-dev.txt
     ```
-2. Periodically check style and formatting
+2. Periodically check style and formatting (`git` must be in your PATH to work)
     ```
     pre-commit run --all-files
     ```

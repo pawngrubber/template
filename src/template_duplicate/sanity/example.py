@@ -1,12 +1,13 @@
-import numpy as np  # type: ignore[import]
 import numbers
 
-
-def arange(numbers: int) -> np.array:
-    return np.arange(numbers)
+import numpy as np  # type: ignore[import]
 
 
-def add(val_one: numbers.Number, val_two: numbers.Number) -> numbers.Number:
+def arange(number: int) -> np.typing.ArrayLike:
+    return np.arange(number)
+
+
+def add(val_one: float, val_two: float) -> float:
     return val_one + val_two
 
 
