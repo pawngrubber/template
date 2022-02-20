@@ -95,6 +95,8 @@ repos:
     hooks:
     -   id: mypy
         args: []
+        additional_dependencies:
+          - numpy
 
   - repo: https://github.com/PyCQA/flake8
     rev: 4.0.1

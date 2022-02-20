@@ -1,1 +1,1 @@
-from template import example
+from template import sanity

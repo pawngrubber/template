@@ -1,63 +1,52 @@
 This repository is a template for future repositories.  Features:
 - Can be packaged with `pip`
-- Has structure for unit testing in the `tests` directory with working `pytest` tests
-- Has separate `requirements.txt` and `requirements-dev.txt` files for streamlined use
-- Prepared `environment.yml` file for making a fresh Anaconda environment
-- `README.md` file with working instructions
-- Style checks using `flake8`, `mypy`, and `black` all bundled into a single `pre-commit` action
-- Automated testing using Github Actions in multiple Python versions
-- Uses Python 3.9, the latest version of Python I want to use (TensorFlow doesn't yet support Python 3.10)
+- Working `pytest` tests in `tests` directory
+- Install with `requirements.txt` and `requirements-dev.txt`
+- Anaconda environment prepared with `environment.yml`
+- `README.md` file with repeatable instructions
+- Style checks using `flake8`, `mypy`, and `black` bundled into a single `pre-commit` action
+- GitHub Actions automates style and unit tests across matrixed Python versions
+- Uses Python 3.9 (because stable [TensorFlow](https://www.tensorflow.org/install/pip) doesn't yet support Python 3.10)
 
-Code is built in python 3.9, install python3.9 before continuing.  If you use `anaconda` then jump to the `Install python via anaconda` section at the bottom before completing these steps.  
-
-## Build this package
-1. Upgrade pip and build
-    ```
-    python -m pip install --upgrade pip
-    python -m pip install --upgrade build
-    ```
-2. Navigate to the base directory and build, install requirements, and install package
-    ```
-    python -m build
-    python -m pip install -r requirements.txt
-    python -m pip install -e . --no-deps
-    ```
-
-## Check style and unit tests
-1. Navigate to the base directory and install requirements for code style and formatting
-    ```
-    python -m pip install -r requirements-dev.txt
-    ```
-2. Periodically check style and formatting
-    ```
-    pre-commit run --all-files
-    ```
-3. Periodically run unit tests (from the base directory)
-    ```
-    pytest
-    ```
-4. NOTE: you can automatically install available `mypy` types with:
-    ```
-    mypy --install-types
-    ```
-
-
-## Install python via anaconda
-1. Install anaconda https://docs.anaconda.com/anaconda/install/index.html
-2. Update `anaconda`: Open an anaconda prompt as administrator (only this step requires admin privileges) and execute the following commands:
+## Create virtual environment with Anaconda
+1. Install [Anaconda](https://docs.anaconda.com/anaconda/install/index.html)
+2. Run in an Anaconda Prompt (as administrator) to update Anaconda:
    ```
    conda update anaconda
    conda update --all
    ```
-3. Navigate to the base directory and run the following to create a new `conda` environment named `template`.  WARNING: This will overwrite any previous `template` environment you have on your system:
+3. Create an [Anaconda Environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) (from base directory):
    ```
    conda env create -f environment.yml --force
    ```
-4. Activate the environment
-   ```
-   conda activate template
-   ```
-5. When you are done, deactivate the environment
-   ```
-   conda deactivate
-   ```
+4. When developing, open a fresh Anaconda Prompt and activate the environment with `conda activate template`
+
+## Build and Install
+1. Upgrade pip
+    ```
+    python -m pip install --upgrade pip
+    ```
+2. Install requirements (from base directory)
+    ```
+    python -m pip install -r requirements.txt
+    ```
+3. Build (from base directory)
+    ```
+    python -m pip install --upgrade build
+    python -m build
+    python -m pip install -e . --no-deps
+    ```
+
+## Set up style and unit tests
+1. Install style/unit test requirements (from base directory)
+    ```
+    python -m pip install -r requirements-dev.txt
+    ```
+2. Periodically check style and formatting (`git` must be in your PATH to work)
+    ```
+    pre-commit run --all-files
+    ```
+3. Periodically run unit tests (from base directory)
+    ```
+    pytest
+    ```
