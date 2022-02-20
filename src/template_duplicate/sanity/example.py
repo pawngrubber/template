@@ -1,12 +1,12 @@
 import numpy as np  # type: ignore[import]
-import number
+import numbers
 
 
-def arange(number: int) -> np.array:
-    return np.arange(number)
+def arange(numbers: int) -> np.array:
+    return np.arange(numbers)
 
 
-def add(val_one: number.Number, val_two: number.Number) -> number.Number:
+def add(val_one: numbers.Number, val_two: numbers.Number) -> numbers.Number:
     return val_one + val_two
 
 

@@ -26,7 +26,7 @@ with pytest.raises(Exception):
     raises()
 
 
-# Example demonstrating classes, scopes, and fixtures
+# Complex example demonstrating classes, scopes, and fixtures
 @pytest.fixture
 def val_one():
     return 5
@@ -36,20 +36,19 @@ def echo_val_two(val_two):
     return val_two
 
 class BaseAdd:
-    def test_add(val_one, echo_val_two):
+    def test_add(self, val_one, echo_val_two):
         assert sanity.example.add(val_one, echo_val_two) == val_one + echo_val_two
 
 
 class TestAddThree(BaseAdd):
     @pytest.fixture
-    def val_two():
+    def val_two(self):
         return 3
 
 class TestAddFour(BaseAdd):
     @pytest.fixture
-    def val_two():
+    def val_two(self):
         return 4
-
 
 
 if __name__ == "__main__":

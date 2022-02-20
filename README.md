@@ -15,7 +15,7 @@ This repository is a template for future repositories.  Features:
    conda update anaconda
    conda update --all
    ```
-3. Create an [Anaconda Environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html):
+3. Create an [Anaconda Environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) (from base directory):
    ```
    conda env create -f environment.yml --force
    ```
@@ -26,11 +26,11 @@ This repository is a template for future repositories.  Features:
     ```
     python -m pip install --upgrade pip
     ```
-2. Install requirements
+2. Install requirements (from base directory)
     ```
     python -m pip install -r requirements.txt
     ```
-3. Build
+3. Build (from base directory)
     ```
     python -m pip install --upgrade build
     python -m build
@@ -38,7 +38,7 @@ This repository is a template for future repositories.  Features:
     ```
 
 ## Set up style and unit tests
-1. Install style/unit test requirements
+1. Install style/unit test requirements (from base directory)
     ```
     python -m pip install -r requirements-dev.txt
     ```
@@ -46,7 +46,7 @@ This repository is a template for future repositories.  Features:
     ```
     pre-commit run --all-files
     ```
-3. Periodically run unit tests (from the base directory)
+3. Periodically run unit tests (from base directory)
     ```
     pytest
     ```
