@@ -21,7 +21,7 @@ This repository is a template for future repositories.  Features:
    ```
 4. When developing, open a fresh Anaconda Prompt and activate the environment with `conda activate template`
 
-## Build this package
+## Build and Install
 1. Upgrade pip
     ```
     python -m pip install --upgrade pip
@@ -37,7 +37,7 @@ This repository is a template for future repositories.  Features:
     python -m pip install -e . --no-deps
     ```
 
-## Check style and unit tests
+## Set up style and unit tests
 1. Install style/unit test requirements
     ```
     python -m pip install -r requirements-dev.txt
