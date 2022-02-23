@@ -1,4 +1,4 @@
-import pytest  # type: ignore[import]
+import pytest
 
 from template import sanity
 

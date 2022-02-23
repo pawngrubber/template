@@ -50,3 +50,6 @@ This repository is a template for future repositories.  Features:
     ```
     pytest
     ```
+
+## TODO:
+* Update `mypy.ini`
