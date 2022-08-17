@@ -27,4 +27,4 @@ jobs:
         python -m pip install -r requirements-dev.txt
 
     - name: Run pre-commit before code is pushed
-      uses: pre-commit/action@v2.0.3
+      uses: pre-commit/action@v3.0.0
