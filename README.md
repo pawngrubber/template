@@ -6,7 +6,7 @@ This repository is a template for future repositories.  Features:
 - `README.md` file with repeatable instructions
 - Style checks using `flake8`, `mypy`, and `black` bundled into a single `pre-commit` action
 - GitHub Actions automates style and unit tests across matrixed Python versions
-- Uses Python 3.9 (because stable [TensorFlow](https://www.tensorflow.org/install/pip) doesn't yet support Python 3.10)
+- Uses Python 3.10 (because stable [TensorFlow](https://www.tensorflow.org/install/pip) doesn't yet support Python 3.11)
 
 ## Create virtual environment with Anaconda
 1. Install [Anaconda](https://docs.anaconda.com/anaconda/install/index.html)
