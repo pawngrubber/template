@@ -12,6 +12,10 @@ WORKDIR /template
 
 RUN pip install -r requirements.txt
 
+RUN python -m pip install --upgrade build
+RUN python -m build
+RUN python -m pip install -e . --no-deps
+
 # replace "template" with project name
 ENV PYTHONPATH=/template
 
