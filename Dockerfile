@@ -10,7 +10,6 @@ RUN python3 -m pip install --upgrade build
 
 # replace "repo" with project name
 WORKDIR /repo
-ENV PYTHONPATH=/repo
 
 ADD requirements.txt .
 RUN python3 -m pip install -r requirements.txt
