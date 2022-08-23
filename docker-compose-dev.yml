@@ -1,0 +1,10 @@
+services:
+
+  dev:
+    build:
+      context: .
+      target: dev
+    volumes:
+      - type: bind
+        source: .
+        target: /repo
