@@ -1,26 +1,38 @@
-FROM alpine:3.14 AS prod
+# NOTE: if you modify any requirements file, you must 
+# reinstall the requirements in your dev container, or
+# rebuild the docker image.
 
-RUN apk update
-# needed to install numpy, else compilation fails
-RUN apk add make automake gcc g++ subversion python3-dev
-RUN apk add --update --no-cache python3 py3-pip
+FROM python:3.10-slim as base
 
-# replace "template" with project name
-ADD . /template
+RUN apt-get update
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install --upgrade build
 
-WORKDIR /template
+# replace "repo" with project name
+WORKDIR /repo
+ENV PYTHONPATH=/repo
 
-RUN pip install -r requirements.txt
-
-RUN python -m pip install --upgrade build
-RUN python -m build
-RUN python -m pip install -e . --no-deps
-
-# replace "template" with project name
-ENV PYTHONPATH=/template
+ADD requirements.txt .
+RUN python3 -m pip install -r requirements.txt
 
 
-FROM prod as dev
+FROM base as prod
 
-# pip collides with apk on ditlib
-RUN pip install --ignore-installed distlib -r requirements-dev.txt
+# warning: this will re-ADD requirements.txt
+ADD . .
+
+RUN python3 -m build
+RUN python3 -m pip install -e . --no-deps
+
+
+FROM base as dev
+
+ADD requirements-dev.txt .
+RUN python3 -m pip install -r requirements-dev.txt
+RUN apt-get install git
+
+# in docker-compose, as part of running the dev container,
+# mount your local repository and build the wheels with 
+#   RUN python3 -m build
+#   RUN python3 -m pip install -e . --no-deps
+
