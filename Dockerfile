@@ -1,4 +1,4 @@
-# NOTE: if you modify any requirements file, you must 
+# NOTE: if you modify any requirements file, you must
 # reinstall the requirements in your dev container, or
 # rebuild the docker image.
 
@@ -29,10 +29,10 @@ FROM base as dev
 
 ADD requirements-dev.txt .
 RUN python3 -m pip install -r requirements-dev.txt
-RUN apt-get install git
+RUN apt-get install -y git
 
 # in docker-compose, as part of running the dev container,
-# mount your local repository and build the wheels with 
+# mount your local repository and build the wheels with
 #   RUN python3 -m build
 #   RUN python3 -m pip install -e . --no-deps
-
+CMD ["python", "-m", "pip", "install", "-e", ".", "--no-deps"]
