@@ -51,5 +51,25 @@ This repository is a template for future repositories.  Features:
     pytest
     ```
 
+## Develop in Docker
+1. Start (build if it doesn't exist) `dev` image and container
+    ```
+    docker-compose -f docker-compose-dev.yml up --detach
+    ```
+2. Connect to the running container
+    ```
+    docker exec -it template_dev_container /bin/sh
+    ```
+3. Quit the running container
+    ```
+    exit
+    ```
+4. Shut down container (without deleting them)
+    ```
+    docker-compose -f docker-compose-dev.yml stop
+    ```
+
 ## TODO:
 * Update `mypy.ini`
+
+* `docker-compose -f docker-compose-dev.yml build`
