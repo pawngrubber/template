@@ -60,11 +60,21 @@ This repository is a template for future repositories.  Features:
     ```
     docker exec -it template_dev_container /bin/sh
     ```
-3. Quit the running container
+3. Build the projects as wheels and install them as editable
+    ```
+    python -m pip install --upgrade build
+    python -m build
+    python -m pip install -e . --no-deps
+    ```
+4. Initialize pre-commit
+    ```
+    pre-commit run --all-files
+    ```
+5. Quit the running container
     ```
     exit
     ```
-4. Shut down container (without deleting them)
+6. Shut down container (without deleting them). If you delete the container you will have to repeat these steps.
     ```
     docker-compose -f docker-compose-dev.yml stop
     ```
