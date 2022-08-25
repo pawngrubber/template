@@ -9,6 +9,8 @@ This repository is a template for future repositories.  Features:
 - Uses Python 3.10 (because stable [TensorFlow](https://www.tensorflow.org/install/pip) doesn't yet support Python 3.11)
 
 ## Develop in Docker
+The dev environment is built inside the Dockerfile, and docker-compose-dev.yml also specifies local file mounting so that
+you can develop locally and run any commands inside the container.
 1. Start (build if it doesn't exist) `dev` image and container
     ```
     docker-compose -f docker-compose-dev.yml up --detach
