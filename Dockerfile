@@ -28,12 +28,6 @@ FROM base as dev
 
 RUN apt-get install -y git
 
-# Cache pre-commit
 WORKDIR /repo
 ADD requirements-dev.txt .
 RUN python3 -m pip install -r requirements-dev.txt
-
-# in docker-compose, as part of running the dev container,
-# mount your local repository and build the wheels with
-#   RUN python3 -m build
-#   RUN python3 -m pip install -e . --no-deps
