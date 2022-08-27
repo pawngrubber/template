@@ -10,29 +10,33 @@ This repository is a template for future repositories.  Features:
 
 ## Develop in Docker
 Code development is in a Docker image, use these steps to spin up the image
-1. Start `dev` development image and container. Conveniently also builds `dev` if it doesn't already exist.
+1. Start and build `dev` development image and container
     ```
-    docker-compose -f docker-compose-dev.yml up --detach
+    docker-compose -f docker-compose-dev.yml up --detach --build
     ```
 2. Connect to the container hosting the `dev` image
     ```
     docker exec -it template_dev_container /bin/sh
     ```
-3. Build the projects for imports. Only needs to be run the first time the container is created.
-    ```
-    python -m build
-    python -m pip install -e . --no-deps
-    ```
-4. Initialize `pre-commit`. Only needs to be run the first time the container is created.
+3. Code can be edited either in your local (host) file system or in the container hosting `dev`. Either way, the container will sync the code base. Run the code in the container hosting `dev` as needed during development.
+
+## (Optional) Run unit and style tests
+Before pushing changes to `git`, make sure unit tests and style tests pass
+1. style tests with `pre-commit`
     ```
     pre-commit run --all-files
     ```
-5. Code can be edited either in your local (host) file system or in the container hosting `dev`. Either way, the container will sync the code base. Run the code in the container hosting `dev` as needed during development.
-6. Quit the running container
+2. Unit tests with `pytest`
+    ```
+    pytest
+    ```
+
+## Stop work for the day
+1. Quit the running container
     ```
     exit
     ```
-7. Shut down the container without deleting the container (to avoid repeating steps 3 and 4).
+2. Shut down and delete the container
     ```
-    docker-compose -f docker-compose-dev.yml stop
+    docker-compose -f docker-compose-dev.yml down
     ```

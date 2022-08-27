@@ -11,15 +11,10 @@ RUN python3 -m pip install --upgrade build
 # replace "repo" with project name
 WORKDIR /repo
 
-ADD requirements.txt .
-RUN python3 -m pip install -r requirements.txt
-
 
 FROM base as prod
-
-# warning: this will re-ADD requirements.txt
 ADD . .
-
+RUN python3 -m pip install -r requirements.txt
 RUN python3 -m build
 RUN python3 -m pip install -e . --no-deps
 
@@ -28,14 +23,25 @@ FROM base as dev
 
 RUN apt-get install -y git
 
+# Install things in separate /cache folder
 WORKDIR /cache
+
+# Install pre-commit
 ADD requirements-dev.txt .
 ADD .pre-commit-config.yaml .
 RUN python3 -m pip install -r requirements-dev.txt
 RUN git init .
 RUN pre-commit install-hooks
-WORKDIR /repo
 
+# Cache things before requirements.txt
+ADD requirements.txt .
+RUN python3 -m pip install -r requirements.txt
+
+# Build the repo
+WORKDIR /repo
+ADD . .
+RUN python -m build
+RUN python -m pip install -e . --no-deps
 
 FROM dev as test
 
