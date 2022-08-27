@@ -28,7 +28,7 @@ Code development is in a Docker image, use these steps to spin up the image
     ```
     pre-commit run --all-files
     ```
-5. Edit the code base either in the container hosting `dev` or outside of the container. The container will sync the code base. Run the code in the container hosting `dev` as needed.
+5. Code can be edited either in your local (host) file system or in the container hosting `dev`. Either way, the container will sync the code base. Run the code in the container hosting `dev` as needed during development.
 6. Quit the running container
     ```
     exit
@@ -37,6 +37,3 @@ Code development is in a Docker image, use these steps to spin up the image
     ```
     docker-compose -f docker-compose-dev.yml stop
     ```
-
-## TODO:
-* Update `mypy.ini`
