@@ -20,7 +20,6 @@ Code development is in a Docker image, use these steps to spin up the image
     ```
 3. Build the projects for imports. Only needs to be run the first time the container is created.
     ```
-    python -m pip install --upgrade build
     python -m build
     python -m pip install -e . --no-deps
     ```
