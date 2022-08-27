@@ -10,15 +10,11 @@ This repository is a template for future repositories.  Features:
 
 ## Develop in Docker
 Code development is in a Docker image, use these steps to spin up the image
-1. Start and build `dev` development image and container
+1. Build and connect to the `dev` development image
     ```
-    docker-compose -f docker-compose-dev.yml up --detach --build
+    docker-compose build dev && docker-compose run --rm dev
     ```
-2. Connect to the container hosting the `dev` image
-    ```
-    docker exec -it template_dev_container /bin/sh
-    ```
-3. Code can be edited either in your local (host) file system or in the container hosting `dev`. Either way, the container will sync the code base. Run the code in the container hosting `dev` as needed during development.
+2. Code can be edited either in your local (host) file system or in the container hosting `dev`. Either way, the container will sync the code base. Run the code in the container hosting `dev` as needed during development.
 
 ## (Optional) Run unit and style tests
 Before pushing changes to `git`, make sure unit tests and style tests pass
