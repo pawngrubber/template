@@ -28,9 +28,13 @@ FROM base as dev
 
 RUN apt-get install -y git
 
-WORKDIR /repo
+WORKDIR /cache
 ADD requirements-dev.txt .
+ADD .pre-commit-config.yaml .
 RUN python3 -m pip install -r requirements-dev.txt
+RUN git init .
+RUN pre-commit install-hooks
+WORKDIR /repo
 
 
 FROM dev as test
