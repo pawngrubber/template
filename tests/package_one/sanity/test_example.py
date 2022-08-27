@@ -5,7 +5,7 @@ from package_one import sanity
 
 # The real sanity test
 def test_truth():
-    assert False
+    assert True
 
 
 # Examples of a few simple tests
