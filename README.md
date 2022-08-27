@@ -9,36 +9,34 @@ This repository is a template for future repositories.  Features:
 - Uses Python 3.10 (because stable [TensorFlow](https://www.tensorflow.org/install/pip) doesn't yet support Python 3.11)
 
 ## Develop in Docker
-The dev environment is built inside the Dockerfile, and docker-compose-dev.yml also specifies local file mounting so that
-you can develop locally and run any commands inside the container.
-1. Start (build if it doesn't exist) `dev` image and container
+Code development is in a Docker image, use these steps to spin up the image
+1. Start `dev` development image and container. Conveniently also builds `dev` if it doesn't already exist.
     ```
     docker-compose -f docker-compose-dev.yml up --detach
     ```
-2. Connect to the running container
+2. Connect to the container hosting the `dev` image
     ```
     docker exec -it template_dev_container /bin/sh
     ```
-3. Build the projects as wheels and install them as editable
+3. Build the projects for imports. Only needs to be run the first time the container is created.
     ```
     python -m pip install --upgrade build
     python -m build
     python -m pip install -e . --no-deps
     ```
-4. Initialize pre-commit
+4. Initialize `pre-commit`. Only needs to be run the first time the container is created.
     ```
     pre-commit run --all-files
     ```
-5. Quit the running container
+5. Edit the code base either in the container hosting `dev` or outside of the container. The container will sync the code base. Run the code in the container hosting `dev` as needed.
+6. Quit the running container
     ```
     exit
     ```
-6. Shut down container (without deleting them). If you delete the container you will have to repeat these steps.
+7. Shut down the container without deleting the container (to avoid repeating steps 3 and 4).
     ```
     docker-compose -f docker-compose-dev.yml stop
     ```
 
 ## TODO:
 * Update `mypy.ini`
-
-* `docker-compose -f docker-compose-dev.yml build`
