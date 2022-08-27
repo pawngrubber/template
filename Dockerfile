@@ -31,3 +31,11 @@ RUN apt-get install -y git
 WORKDIR /repo
 ADD requirements-dev.txt .
 RUN python3 -m pip install -r requirements-dev.txt
+
+
+FROM dev as test
+
+# warning: this will re-ADD requirements.txt and requirements-dev.txt
+ADD . .
+RUN python3 -m build
+RUN python3 -m pip install -e . --no-deps
