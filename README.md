@@ -2,54 +2,38 @@ This repository is a template for future repositories.  Features:
 - Can be packaged with `pip`
 - Working `pytest` tests in `tests` directory
 - Install with `requirements.txt` and `requirements-dev.txt`
-- Anaconda environment prepared with `environment.yml`
+- environment installed inside a Docker Container
 - `README.md` file with repeatable instructions
 - Style checks using `flake8`, `mypy`, and `black` bundled into a single `pre-commit` action
 - GitHub Actions automates style and unit tests across matrixed Python versions
 - Uses Python 3.10 (because stable [TensorFlow](https://www.tensorflow.org/install/pip) doesn't yet support Python 3.11)
 
-## Create virtual environment with Anaconda
-1. Install [Anaconda](https://docs.anaconda.com/anaconda/install/index.html)
-2. Run in an Anaconda Prompt (as administrator) to update Anaconda:
-   ```
-   conda update anaconda
-   conda update --all
-   ```
-3. Create an [Anaconda Environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) (from base directory):
-   ```
-   conda env create -f environment.yml --force
-   ```
-4. When developing, open a fresh Anaconda Prompt and activate the environment with `conda activate template`
-
-## Build and Install
-1. Upgrade pip
+## Develop in Docker
+Code development is in a Docker image, use these steps to spin up the image
+1. Start `dev` development image and container. Conveniently also builds `dev` if it doesn't already exist.
     ```
-    python -m pip install --upgrade pip
+    docker-compose -f docker-compose-dev.yml up --detach
     ```
-2. Install requirements (from base directory)
+2. Connect to the container hosting the `dev` image
     ```
-    python -m pip install -r requirements.txt
+    docker exec -it template_dev_container /bin/sh
     ```
-3. Build (from base directory)
+3. Build the projects for imports. Only needs to be run the first time the container is created.
     ```
     python -m pip install --upgrade build
     python -m build
     python -m pip install -e . --no-deps
     ```
-
-## Set up style and unit tests
-1. Install style/unit test requirements (from base directory)
-    ```
-    python -m pip install -r requirements-dev.txt
-    ```
-2. Periodically check style and formatting (`git` must be in your PATH to work)
+4. Initialize `pre-commit`. Only needs to be run the first time the container is created.
     ```
     pre-commit run --all-files
     ```
-3. Periodically run unit tests (from base directory)
+5. Code can be edited either in your local (host) file system or in the container hosting `dev`. Either way, the container will sync the code base. Run the code in the container hosting `dev` as needed during development.
+6. Quit the running container
     ```
-    pytest
+    exit
     ```
-
-## TODO:
-* Update `mypy.ini`
+7. Shut down the container without deleting the container (to avoid repeating steps 3 and 4).
+    ```
+    docker-compose -f docker-compose-dev.yml stop
+    ```

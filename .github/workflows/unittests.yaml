@@ -4,7 +4,6 @@ name: tests
 
 on:
   push:
-  pull_request:
   schedule:
     - cron:  "0 0 * * 1"
       branches: [ $default-branch ]
@@ -16,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: ["3.10", "3.11.0-rc.1"]
+        python-version: ["3.10"]
       fail-fast: false
 
     steps:
