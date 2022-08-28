@@ -1,8 +1,0 @@
-services:
-
-  test:
-    build:
-      context: .
-      target: test
-    image: template:test
-    container_name: template_test_container

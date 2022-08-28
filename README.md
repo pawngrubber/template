@@ -10,29 +10,23 @@ This repository is a template for future repositories.  Features:
 
 ## Develop in Docker
 Code development is in a Docker image, use these steps to spin up the image
-1. Start `dev` development image and container. Conveniently also builds `dev` if it doesn't already exist.
+1. Download and install [Docker](https://docs.docker.com/engine/install/)
+2. Clone this repository
+3. Build the `dev` development image and connect to the container hosting `dev`
     ```
-    docker-compose -f docker-compose-dev.yml up --detach
+    docker-compose build dev && docker-compose run --rm dev
     ```
-2. Connect to the container hosting the `dev` image
-    ```
-    docker exec -it template_dev_container /bin/sh
-    ```
-3. Build the projects for imports. Only needs to be run the first time the container is created.
-    ```
-    python -m build
-    python -m pip install -e . --no-deps
-    ```
-4. Initialize `pre-commit`. Only needs to be run the first time the container is created.
-    ```
-    pre-commit run --all-files
-    ```
-5. Code can be edited either in your local (host) file system or in the container hosting `dev`. Either way, the container will sync the code base. Run the code in the container hosting `dev` as needed during development.
-6. Quit the running container
+4. Edit code either in your local (host) file system or in the container hosting `dev`. Either way, the container will sync the code base. Code must be run in the container hosting `dev`.
+5. (Optional) Before pushing changes to `git`, make sure unit and style tests pass in the container
+    1. Style tests with `pre-commit`
+        ```
+        pre-commit run --all-files
+        ```
+    2. Unit tests with `pytest`
+        ```
+        pytest
+        ```
+6. Quit the running container. This will also shut down and delete the container
     ```
     exit
-    ```
-7. Shut down the container without deleting the container (to avoid repeating steps 3 and 4).
-    ```
-    docker-compose -f docker-compose-dev.yml stop
     ```

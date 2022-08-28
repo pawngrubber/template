@@ -1,0 +1,8 @@
+services:
+
+  dev:
+    build:
+      context: .
+      target: dev
+    image: template:dev
+    container_name: template_dev_container

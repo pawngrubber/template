@@ -1,25 +1,14 @@
-# NOTE: if you modify any requirements file, you must
-# reinstall the requirements in your dev container, or
-# rebuild the docker image.
-
 FROM python:3.10-slim as base
 
+# Install things
 RUN apt-get update
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install --upgrade build
 
-# replace "repo" with project name
-WORKDIR /repo
-
-ADD requirements.txt .
-RUN python3 -m pip install -r requirements.txt
-
-
 FROM base as prod
-
-# warning: this will re-ADD requirements.txt
+WORKDIR /repo
 ADD . .
-
+RUN python3 -m pip install -r requirements.txt
 RUN python3 -m build
 RUN python3 -m pip install -e . --no-deps
 
@@ -28,14 +17,22 @@ FROM base as dev
 
 RUN apt-get install -y git
 
-WORKDIR /repo
+# Install things in separate /cache folder
+WORKDIR /cache
+
+# Install pre-commit
 ADD requirements-dev.txt .
+ADD .pre-commit-config.yaml .
 RUN python3 -m pip install -r requirements-dev.txt
+RUN git init .
+RUN pre-commit install-hooks
 
+# Cache things before requirements.txt
+ADD requirements.txt .
+RUN python3 -m pip install -r requirements.txt
 
-FROM dev as test
-
-# warning: this will re-ADD requirements.txt and requirements-dev.txt
+# Build the repo
+WORKDIR /repo
 ADD . .
-RUN python3 -m build
-RUN python3 -m pip install -e . --no-deps
+RUN python -m build
+RUN python -m pip install -e . --no-deps
