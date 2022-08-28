@@ -9,7 +9,7 @@ on:
       branches: [ $default-branch ]
 
 jobs:
-  pre-commit:
+  pytest:
     runs-on: ubuntu-latest
     steps:
 
