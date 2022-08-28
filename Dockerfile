@@ -1,18 +1,12 @@
-# NOTE: if you modify any requirements file, you must
-# reinstall the requirements in your dev container, or
-# rebuild the docker image.
-
 FROM python:3.10-slim as base
 
+# Install things
 RUN apt-get update
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install --upgrade build
 
-# replace "repo" with project name
-WORKDIR /repo
-
-
 FROM base as prod
+WORKDIR /repo
 ADD . .
 RUN python3 -m pip install -r requirements.txt
 RUN python3 -m build
