@@ -42,10 +42,3 @@ WORKDIR /repo
 ADD . .
 RUN python -m build
 RUN python -m pip install -e . --no-deps
-
-FROM dev as test
-
-# warning: this will re-ADD requirements.txt and requirements-dev.txt
-ADD . .
-RUN python3 -m build
-RUN python3 -m pip install -e . --no-deps
