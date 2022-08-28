@@ -6,7 +6,7 @@ This repository is a template for future repositories.  Features:
 - `README.md` file with repeatable instructions
 - Style checks using `flake8`, `mypy`, and `black` bundled into a single `pre-commit` action
 - GitHub Actions automates style and unit tests across matrixed Python versions
-- Uses Python 3.10 (because stable [TensorFlow](https://www.tensorflow.org/install/pip) doesn't yet support Python 3.11)
+- Uses Python 3.10 because stable [TensorFlow](https://www.tensorflow.org/install/pip) doesn't yet support Python 3.11
 
 ## Develop in Docker
 Code development is in a Docker image, use these steps to spin up the image
