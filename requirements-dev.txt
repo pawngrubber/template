@@ -1,5 +1,0 @@
-black==22.6.0; python_version>='3.10'
-identify>=2.5.3
-mypy>=0.971
-pre-commit
-pytest>=7.1.2

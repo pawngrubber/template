@@ -1,7 +1,7 @@
 This repository is a template for future repositories.  Features:
 - Can be packaged with `pip`
 - Working `pytest` tests in `tests` directory
-- Install with `requirements.txt` and `requirements-dev.txt`
+- Install with `requirements/prod.txt` and `requirements/dev.txt`
 - environment installed inside a Docker Container
 - `README.md` file with repeatable instructions
 - Style checks using `flake8`, `mypy`, and `black` bundled into a single `pre-commit` action
@@ -30,3 +30,11 @@ Code development is in a Docker image, use these steps to spin up the image
     ```
     exit
     ```
+
+## Updating the Environment
+1. Use pip-compile to build a new pinned requirements file.
+    ```
+    pip-compile requirements/prod.in --output-file=requirements/prod.txt
+    exit
+    ```
+2. Rebuild the container using the commands above.
