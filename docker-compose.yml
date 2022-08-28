@@ -12,4 +12,4 @@ services:
         target: /repo
     stdin_open: true
     tty: true
-    entrypoint: /bin/sh
+    entrypoint: /bin/bash

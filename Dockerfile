@@ -22,8 +22,8 @@ WORKDIR /cache
 
 # Install pre-commit
 ADD requirements-dev.txt .
-ADD .pre-commit-config.yaml .
 RUN python3 -m pip install -r requirements-dev.txt
+ADD .pre-commit-config.yaml .
 RUN git init .
 RUN pre-commit install-hooks
 
@@ -31,8 +31,11 @@ RUN pre-commit install-hooks
 ADD requirements.txt .
 RUN python3 -m pip install -r requirements.txt
 
-# Build the repo
+# Remove /cache directory
 WORKDIR /repo
+RUN rm -r /cache
+
+# Build the repo
 ADD . .
 RUN python -m build
 RUN python -m pip install -e . --no-deps
