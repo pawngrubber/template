@@ -1,4 +1,4 @@
-FROM python:3.10-slim as base
+FROM python:3.10-slim-buster as base
 
 # Install things
 RUN apt-get update
