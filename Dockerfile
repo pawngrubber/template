@@ -8,7 +8,7 @@ RUN python3 -m pip install --upgrade build
 FROM base as prod
 WORKDIR /repo
 ADD . .
-RUN python3 -m pip install -r requirements.txt
+RUN python3 -m pip install -r requirements/prod.txt
 RUN python3 -m build
 RUN python3 -m pip install -e . --no-deps
 
@@ -21,15 +21,15 @@ RUN apt-get install -y git
 WORKDIR /cache
 
 # Install pre-commit
-ADD requirements-dev.txt .
-RUN python3 -m pip install -r requirements-dev.txt
+ADD requirements/dev.txt requirements/dev.txt
+RUN python3 -m pip install -r requirements/dev.txt
 ADD .pre-commit-config.yaml .
 RUN git init .
 RUN pre-commit install-hooks
 
-# Cache things before requirements.txt
-ADD requirements.txt .
-RUN python3 -m pip install -r requirements.txt
+# Cache things before requirements/prod.txt
+ADD requirements/prod.txt requirements/prod.txt
+RUN python3 -m pip install -r requirements/prod.txt
 
 # Remove /cache directory
 WORKDIR /repo
