@@ -35,6 +35,7 @@ Code development is in a Docker image, use these steps to spin up the image
 1. Use pip-compile to build a new pinned requirements file.
     ```
     pip-compile requirements/prod.in --output-file=requirements/prod.txt
+    pip-compile requirements/dev.in --output-file=requirements/dev.txt
     exit
     ```
 2. Rebuild the container using the commands above.
