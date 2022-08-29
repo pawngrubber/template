@@ -1,3 +1,4 @@
+// TODO: delete the container on exit.
 // https://code.visualstudio.com/docs/remote/devcontainerjson-reference
 {
   "dockerComposeFile":"docker-compose.yml",
