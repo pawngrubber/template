@@ -1,0 +1,13 @@
+// https://code.visualstudio.com/docs/remote/devcontainerjson-reference
+{
+  "dockerComposeFile":"docker-compose.yml",
+  "workspaceFolder": "/repo",
+  "service": "dev",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python"
+      ]
+    }
+  }
+}
