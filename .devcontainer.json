@@ -1,4 +1,5 @@
 // TODO: delete the container on exit.
+// TODO: install the extensions on creation.
 // https://code.visualstudio.com/docs/remote/devcontainerjson-reference
 {
   "dockerComposeFile":"docker-compose.yml",
