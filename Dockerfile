@@ -39,3 +39,12 @@ RUN rm -r /cache
 ADD . .
 RUN python -m build
 RUN python -m pip install -e . --no-deps
+
+ARG src="nscacert.pem"
+ARG newname="nscacert.crt"
+ARG dest="/usr/local/share/ca-certificates/netskope/"
+ADD ${src} ${dest}${newname}
+RUN chmod 644 ${dest}
+RUN chmod 755 ${dest}${newname}
+RUN cat ${dest}${newname} >> /etc/ssl/certs/ca-certificates.crt
+RUN update-ca-certificates
