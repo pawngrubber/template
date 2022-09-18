@@ -31,9 +31,13 @@ jobs:
         context: .
         target: dev
         push: false
-        tags: pawngrubber/template:gha
-        cache-from: type=registry,ref=pawngrubber/template:buildcache
-        cache-to: type=registry,ref=pawngrubber/template:buildcache,mode=max
+        tags: template:tests
+        cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/template:buildcache
+        cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/template:buildcache,mode=max
+        outputs: type=docker
+    -
+      name: Run tests
+      run: docker run template:tests pre-commit run --all-files
 
     #- name: Build dev docker image
     #  run: docker-compose -f docker-compose-gha.yml run dev pre-commit run --all-files
