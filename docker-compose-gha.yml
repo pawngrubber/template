@@ -4,5 +4,5 @@ services:
     build:
       context: .
       target: dev
-    image: template:dev
+    image: pawngrubber/template:buildcache
     container_name: template_dev_container
