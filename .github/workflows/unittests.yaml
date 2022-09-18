@@ -31,11 +31,11 @@ jobs:
       with:
         context: .
         target: dev
-        push: false
-        tags: template:gha
+        push: true
+        tags: pawngrubber/template:gha
         cache-from: type=registry,ref=pawngrubber/template:buildcache
         cache-to: type=registry,ref=pawngrubber/template:buildcache,mode=max
     -
       name: Run tests
-      run: docker run template:gha pytest
+      run: docker run pawngrubber/template:gha pytest
       #run: docker-compose -f docker-compose-gha.yml run dev pytest
