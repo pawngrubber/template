@@ -31,10 +31,10 @@ jobs:
         context: .
         target: dev
         push: false
-        tags: template:gha
-        cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/template:cache
-        cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/template:cache,mode=max
+        tags: ${{ secrets.REPO_NAME }}:gha
+        cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.REPO_NAME }}:cache
+        cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.REPO_NAME }}:cache,mode=max
         outputs: type=docker
     -
       name: Run tests
-      run: docker run template:gha pre-commit run --all-files
+      run: docker run ${{ secrets.REPO_NAME }}:gha pre-commit run --all-files
