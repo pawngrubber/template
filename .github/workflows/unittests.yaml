@@ -34,6 +34,6 @@ jobs:
         tags: pawngrubber/template:gha
         cache-from: type=registry,ref=pawngrubber/template:buildcache
         cache-to: type=registry,ref=pawngrubber/template:buildcache,mode=max
-    #-
-    #  name: Run tests
-    #  run: docker-compose -f docker-compose-gha.yml run dev pytest
+    -
+      name: Run tests
+      run: docker-compose -f docker-compose-gha.yml run dev pytest
