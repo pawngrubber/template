@@ -5,7 +5,8 @@ name: unittests
 on:
   push:
   schedule:
-    - cron:  "0 0 * * 1"
+    -
+      cron:  "0 0 * * 1"
       branches: [ $default-branch ]
 
 jobs:
