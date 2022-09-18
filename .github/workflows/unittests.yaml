@@ -30,11 +30,10 @@ jobs:
       with:
         context: .
         target: dev
-        push: true
-        tags: pawngrubber/template:registry_cache
+        push: false
+        tags: pawngrubber/template:gha
         cache-from: type=registry,ref=pawngrubber/template:buildcache
         cache-to: type=registry,ref=pawngrubber/template:buildcache,mode=max
-
-    #- name: Build dev docker image
+    #-
+    #  name: Run tests
     #  run: docker-compose -f docker-compose-gha.yml run dev pytest
-    #
