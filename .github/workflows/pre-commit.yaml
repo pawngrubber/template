@@ -31,13 +31,10 @@ jobs:
         context: .
         target: dev
         push: false
-        tags: template:tests
-        cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/template:buildcache
-        cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/template:buildcache,mode=max
+        tags: template:gha
+        cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/template:cache
+        cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/template:cache,mode=max
         outputs: type=docker
     -
       name: Run tests
-      run: docker run template:tests pre-commit run --all-files
-
-    #- name: Build dev docker image
-    #  run: docker-compose -f docker-compose-gha.yml run dev pre-commit run --all-files
+      run: docker run template:gha pre-commit run --all-files

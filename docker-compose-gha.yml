@@ -1,8 +1,0 @@
-services:
-
-  dev:
-    build:
-      context: .
-      target: dev
-    image: pawngrubber/template:buildcache
-    container_name: template_dev_container

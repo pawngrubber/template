@@ -31,15 +31,10 @@ jobs:
         context: .
         target: dev
         push: false
-        tags: template:tests
-        cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/template:buildcache
-        cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/template:buildcache,mode=max
-        outputs: type=docker,dest=/tmp/myimage.tar
-    -
-      name: Load image
-      run: |
-        docker load --input /tmp/myimage.tar
-        docker image ls -a
+        tags: template:gha
+        cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/template:cache
+        cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/template:cache,mode=max
+        outputs: type=docker
     -
       name: Run tests
-      run: docker run template:tests pytest
+      run: docker run template:gha pytest
