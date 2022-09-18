@@ -22,7 +22,6 @@ jobs:
       name: Login to DockerHub
       uses: docker/login-action@v2
       with:
-        load: true
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     -
@@ -32,10 +31,13 @@ jobs:
         context: .
         target: dev
         push: true
-        tags: pawngrubber/template:gha
-        cache-from: type=registry,ref=pawngrubber/template:buildcache
-        cache-to: type=registry,ref=pawngrubber/template:buildcache,mode=max
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/template:gha
+        cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/template:buildcache
+        cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/template:buildcache,mode=max
     -
       name: Run tests
-      run: docker run pawngrubber/template:gha pytest
-      #run: docker-compose -f docker-compose-gha.yml run dev pytest
+      #run: docker run ${{ secrets.DOCKERHUB_USERNAME }}/template:gha pytest
+      run: docker pull pawngrubber/template:buildcache
+    -
+      name: tests
+      run: docker-compose -f docker-compose-gha.yml run dev pytest
