@@ -31,7 +31,7 @@ jobs:
         context: .
         target: dev
         push: false
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/template:tests
+        tags: /template:tests
         cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/template:buildcache
         cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/template:buildcache,mode=max
         outputs: type=docker,dest=/tmp/myimage.tar
