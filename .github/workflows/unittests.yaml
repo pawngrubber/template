@@ -31,22 +31,10 @@ jobs:
         context: .
         target: dev
         push: false
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/template:gha
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/template:tests
         cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/template:buildcache
         cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/template:buildcache,mode=max
         outputs: type=docker,dest=/tmp/myimage.tar
-    -
-      name: Upload artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: myimage
-        path: /tmp/myimage.tar
-    -
-      name: Download artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: myimage
-        path: /tmp
     -
       name: Load image
       run: |
@@ -54,4 +42,4 @@ jobs:
         docker image ls -a
     -
       name: Run tests
-      run: docker run ${{ secrets.DOCKERHUB_USERNAME }}/template:gha pytest
+      run: docker run template:tests pytest
