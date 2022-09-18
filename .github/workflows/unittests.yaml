@@ -30,7 +30,7 @@ jobs:
       with:
         context: .
         target: dev
-        push: true
+        push: false
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/template:gha
         cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/template:buildcache
         cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/template:buildcache,mode=max
