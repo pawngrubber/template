@@ -1,6 +1,6 @@
 # Run python unit tests
 
-name: unittests
+name: tests
 
 on:
   push:
@@ -37,5 +37,8 @@ jobs:
         cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.REPO_NAME }}:cache,mode=max
         outputs: type=docker
     -
-      name: Run tests
+      name: Unit tests
       run: docker run ${{ secrets.REPO_NAME }}:gha pytest
+    -
+      name: Style tests
+      run: docker run ${{ secrets.REPO_NAME }}:gha pre-commit run --all-files

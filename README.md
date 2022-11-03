@@ -31,7 +31,25 @@ Code development is in a Docker image, use these steps to spin up the image
     exit
     ```
 
-## Updating the Environment
+## Develop without Docker
+1. Create a Python virtual environment
+2. In this virtual environment, install necessary requirements files
+    ```
+    python -m pip install -r requirements/dev.txt
+    python -m pip install -r requirements/prod.txt
+    ```
+3. Build and install
+    ```
+    python -m build
+    python -m pip install -e . --no-deps
+    ```
+4. Test things
+    ```
+    pre-commit run --all-files
+    pytest
+    ```
+
+## Updating requirements folder
 1. Use pip-compile to build a new pinned requirements file.
     ```
     pip-compile requirements/prod.in --output-file=requirements/prod.txt
