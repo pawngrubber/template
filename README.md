@@ -33,6 +33,9 @@ Code development is in a Docker image, use these steps to spin up the image
 
 ## Develop without Docker
 1. Create a Python virtual environment
+    ```
+    python3 -m venv <environment-name>
+    ```
 2. In this virtual environment, install necessary requirements files
     ```
     python -m pip install -r requirements/dev.txt
