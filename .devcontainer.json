@@ -1,0 +1,18 @@
+// TODO: delete the container on exit.
+// TODO: install the extensions on creation.
+// https://code.visualstudio.com/docs/remote/devcontainerjson-reference
+{
+  "dockerComposeFile": "docker-compose.yml",
+  // "image": "template:dev",
+  // "dockerFile": "Dockerfile",
+  "workspaceFolder": "/repo",
+  "service": "dev",
+  "remoteEnv": {"NODE_EXTRA_CA_CERTS": "/etc/ssl/certs/ca-certificates.crt"},
+  "customizations": {
+    "vscode": {
+      "extensions": [
+    "ms-python.python"
+  ]
+    }
+  }
+}
