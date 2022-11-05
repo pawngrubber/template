@@ -52,12 +52,6 @@ Code development is in a Docker image, use these steps to spin up the image
     exit
     ```
 
-## Set up Docker tests in GitHub Actions
-Docker GitHub Actions will fail until certain Secrets are uploaded
-1. `REPO_NAME`: The name of the Docker repository
-2. `DOCKERHUB_USERNAME`: The DockerHub username
-3. `DOCKERHUB_TOKEN`: A token for access to the repository
-
 ## Updating requirements directory
 1. Use pip-compile to build a new pinned requirements file.
     ```
@@ -68,3 +62,11 @@ Docker GitHub Actions will fail until certain Secrets are uploaded
     ```
     exit
     ```
+
+## When cloning this template:
+1. Change the python version across config files
+2. Change the Docker image names
+3. Docker GitHub Actions will fail until certain Secrets are uploaded
+    1. `REPO_NAME`: The name of the Docker repository
+    2. `DOCKERHUB_USERNAME`: The DockerHub username
+    3. `DOCKERHUB_TOKEN`: A token for access to the repository
