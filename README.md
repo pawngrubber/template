@@ -9,9 +9,9 @@ This repository is a template for future repositories.  Features:
 - Uses Python 3.10 because stable [TensorFlow](https://www.tensorflow.org/install/pip) doesn't yet support Python 3.11
 
 ## Develop without Docker
-1. Create a Python virtual environment
+1. Create a Python virtual environment in `3.10.6`
     ```
-    python3 -m venv <environment-name>
+    python -m venv <environment-name>
     ```
 2. In this virtual environment, install necessary requirements files
     ```
