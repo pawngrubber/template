@@ -1,6 +1,6 @@
 # Run python unit tests
 
-name: tests
+name: docker tests
 
 on:
   push:
