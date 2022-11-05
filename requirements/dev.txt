@@ -26,7 +26,7 @@ identify==2.5.3
     #   pre-commit
 iniconfig==1.1.1
     # via pytest
-mypy==0.971
+mypy==0.982
     # via -r requirements/dev.in
 mypy-extensions==0.4.3
     # via
