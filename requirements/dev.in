@@ -1,6 +1,0 @@
-black==22.6.0
-identify>=2.5.3,<3
-mypy>=0.971,<1
-pip-tools>=6.8.0,<7
-pre-commit>=2.20.0,<3
-pytest>=7.1.2,<8

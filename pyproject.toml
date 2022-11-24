@@ -1,6 +1,30 @@
-[build-system]
-requires = [
-    "setuptools>=61.2.0",
-    "wheel",
+[tool.poetry]
+name = "template"
+version = "0.1.0"
+description = "Default template description"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [
+    { include = "src/package_one" },
+    { include = "src/package_two" }
 ]
-build-backend = "setuptools.build_meta"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+chess = "^1.9.3"
+numpy = "^1.23.5"
+pandas = "^1.5.2"
+pyarrow = "^10.0.1"
+tqdm = "^4.64.1"
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.10.0"
+identify = "^2.5.9"
+mypy = "^0.991"
+pip-tools = "^6.10.0"
+pre-commit = "^2.20.0"
+pytest = "^7.2.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
