@@ -2,13 +2,34 @@ This repository is a template for future repositories.  Features:
 - Can be packaged with `pip`
 - Working `pytest` tests in `tests` directory
 - Install with `requirements/prod.txt` and `requirements/dev.txt`
-- environment installed inside a Docker Container
+- Environment installed inside a Docker Container
 - `README.md` file with repeatable instructions
 - Style checks using `flake8`, `mypy`, and `black` bundled into a single `pre-commit` action
 - GitHub Actions automates style and unit tests across matrixed Python versions
 - Uses Python 3.10 because stable [TensorFlow](https://www.tensorflow.org/install/pip) doesn't yet support Python 3.11
 
-## Develop in Docker
+## Develop without Docker
+1. Create a Python virtual environment in `3.10.8`
+    ```
+    python -m venv <environment-name>
+    ```
+2. In this virtual environment, install necessary requirements files
+    ```
+    python -m pip install -r requirements/dev.txt
+    python -m pip install -r requirements/prod.txt
+    ```
+3. Build and install
+    ```
+    python -m build
+    python -m pip install -e . --no-deps
+    ```
+4. Test things
+    ```
+    pre-commit run --all-files
+    pytest
+    ```
+
+## Develop with Docker
 Code development is in a Docker image, use these steps to spin up the image
 1. Download and install [Docker](https://docs.docker.com/engine/install/)
 2. Clone this repository
@@ -31,32 +52,21 @@ Code development is in a Docker image, use these steps to spin up the image
     exit
     ```
 
-## Develop without Docker
-1. Create a Python virtual environment
-    ```
-    python3 -m venv <environment-name>
-    ```
-2. In this virtual environment, install necessary requirements files
-    ```
-    python -m pip install -r requirements/dev.txt
-    python -m pip install -r requirements/prod.txt
-    ```
-3. Build and install
-    ```
-    python -m build
-    python -m pip install -e . --no-deps
-    ```
-4. Test things
-    ```
-    pre-commit run --all-files
-    pytest
-    ```
-
-## Updating requirements folder
+## Updating requirements directory
 1. Use pip-compile to build a new pinned requirements file.
     ```
     pip-compile requirements/prod.in --output-file=requirements/prod.txt
     pip-compile requirements/dev.in --output-file=requirements/dev.txt
+    ```
+2. If using Docker, rebuild the container using the commands above.
+    ```
     exit
     ```
-2. Rebuild the container using the commands above.
+
+## When cloning this template:
+1. Change the python version across config files
+2. Change the Docker image names
+3. Docker GitHub Actions will fail until certain Secrets are uploaded
+    1. `REPO_NAME`: The name of the Docker repository
+    2. `DOCKERHUB_USERNAME`: The DockerHub username
+    3. `DOCKERHUB_TOKEN`: A token for access to the repository
