@@ -24,12 +24,17 @@ def test_upper():
 
 
 # Example raising an exception
+RAISES_CONSTANT = "some info"
+
+
 def raises():
-    raise Exception
+    raise Exception(RAISES_CONSTANT)
 
 
-with pytest.raises(Exception):
-    raises()
+def test_raises():
+    with pytest.raises(Exception) as e:
+        raises()
+    assert e.value.args[0] == RAISES_CONSTANT
 
 
 # Complex example demonstrating classes, scopes, and fixtures
