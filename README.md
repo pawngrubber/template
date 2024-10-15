@@ -3,7 +3,6 @@ This is a template repository to build on top of:
 - Working `pytest` tests in `tests` directory
 - Environment installed inside a Docker Container
 - `README.md` file with repeatable instructions
-- Style checks using `flake8`, `mypy`, and `black` bundled into a single `pre-commit` action
 - Uses Python 3.12
 
 ## Develop without Docker
@@ -15,11 +14,13 @@ This is a template repository to build on top of:
     ```
 3. Build and install
     ```
-    python -m poetry install --with dev,pre-commit
+    python -m poetry install --with dev
     ```
 4. Test things
     ```
-    poetry run pre-commit run --all-files
+    poetry run ruff check
+    poetry run ruff format
+    poetry run mypy .
     poetry run pytest
     ```
 
@@ -33,9 +34,11 @@ Code development is in a Docker image, use these steps to spin up the image
     ```
 4. Edit code either in your local (host) file system or in the container hosting `dev`. Either way, the container will sync the code base. Code must be run in the container hosting `dev`.
 5. (Optional) Before pushing changes to `git`, make sure unit and style tests pass in the container
-    1. Style tests with `pre-commit`
+    1. Dev tests with `pre-commit`
         ```
-        poetry run pre-commit run --all-files
+        poetry run ruff check
+        poetry run ruff format
+        poetry run mypy .
         ```
     2. Unit tests with `pytest`
         ```
@@ -50,11 +53,6 @@ Code development is in a Docker image, use these steps to spin up the image
 1. Use `poetry`
     ```
     poetry update
-
-    ```
-1. Separate `pre-commit` version (for better Dockerfile staging)
-    ```
-    poetry export --with pre-commit -f requirements.txt --output requirements-pre-commit.txt --without-hashes
     ```
 2. If using Docker, rebuild the container using the commands above.
     ```
