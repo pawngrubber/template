@@ -10,7 +10,6 @@ This is a template repository to build on top of:
 1. Create a new Python virtual environment, make sure the version matches the Dockerfile
 2. In this virtual environment, install necessary requirements files
     ```
-    python -m pip install -r requirements/dev.txt
     python -m pip install -r requirements/prod.txt
     ```
 3. Build and install
