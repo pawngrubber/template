@@ -8,19 +8,19 @@ This is a template repository to build on top of:
 
 ## Develop without Docker
 1. Create a new Python virtual environment, make sure the version matches the Dockerfile
-2. In this virtual environment, install necessary requirements files
+1. Install `poetry`
     ```
-    python -m pip install -r requirements/prod.txt
+    python -m pip install --upgrade pip
+    python -m pip install poetry
     ```
 3. Build and install
     ```
-    python -m build
-    python -m pip install -e . --no-deps
+    python -m poetry install --with dev,pre-commit
     ```
 4. Test things
     ```
-    pre-commit run --all-files
-    pytest
+    poetry run pre-commit run --all-files
+    poetry run pytest
     ```
 
 ## Develop with Docker
@@ -35,11 +35,11 @@ Code development is in a Docker image, use these steps to spin up the image
 5. (Optional) Before pushing changes to `git`, make sure unit and style tests pass in the container
     1. Style tests with `pre-commit`
         ```
-        pre-commit run --all-files
+        poetry run pre-commit run --all-files
         ```
     2. Unit tests with `pytest`
         ```
-        pytest
+        poetry run pytest
         ```
 6. Quit the running container. This will also shut down and delete the container
     ```
