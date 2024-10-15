@@ -1,12 +1,10 @@
-This repository is a template for future repositories.  Features:
-- Can be packaged with `pip`
+This is a template repository to build on top of:
+- Can be packaged with `poetry`
 - Working `pytest` tests in `tests` directory
-- Install with `requirements/prod.txt` and `requirements/dev.txt`
 - Environment installed inside a Docker Container
 - `README.md` file with repeatable instructions
 - Style checks using `flake8`, `mypy`, and `black` bundled into a single `pre-commit` action
-- GitHub Actions automates style and unit tests across matrixed Python versions
-- Uses Python 3.10 because stable [TensorFlow](https://www.tensorflow.org/install/pip) doesn't yet support Python 3.11
+- Uses Python 3.12
 
 ## Develop without Docker
 1. Create a new Python virtual environment, make sure the version matches the Dockerfile
@@ -49,11 +47,15 @@ Code development is in a Docker image, use these steps to spin up the image
     exit
     ```
 
-## Updating requirements directory
-1. Use pip-compile to build a new pinned requirements file.
+## Updating requirements
+1. Use `poetry`
     ```
-    pip-compile requirements/prod.in --output-file=requirements/prod.txt
-    pip-compile requirements/dev.in --output-file=requirements/dev.txt
+    poetry update
+
+    ```
+1. Separate `pre-commit` version (for better Dockerfile staging)
+    ```
+    poetry export --with pre-commit -f requirements.txt --output requirements-pre-commit.txt --without-hashes
     ```
 2. If using Docker, rebuild the container using the commands above.
     ```

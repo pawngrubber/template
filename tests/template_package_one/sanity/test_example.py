@@ -1,6 +1,6 @@
 import pytest
 
-from package_two import sanity
+from template_package_one import sanity
 
 
 # The real sanity test

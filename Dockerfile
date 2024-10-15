@@ -1,17 +1,16 @@
-FROM python:3.10.10-slim-buster as base
+FROM python:3.12.7-slim-buster as base
 
 # Install things
 RUN apt-get update
 RUN python -m pip install --upgrade pip
-RUN python -m pip install --upgrade build
+RUN python -m pip install --upgrade poetry
 
 FROM base as prod
 WORKDIR /repo
+ADD pyproject.toml poetry.lock ./
+RUN poetry install --without dev,pre-commit --no-root --no-interaction --no-ansi
 ADD . .
-RUN python -m pip install -r requirements/prod.txt
-RUN python -m build
-RUN python -m pip install -e . --no-deps
-
+RUN poetry install --without dev,pre-commit --no-interaction --no-ansi
 
 FROM base as dev
 
@@ -21,15 +20,11 @@ RUN apt-get install -y git
 WORKDIR /cache
 
 # Install pre-commit
-ADD requirements/dev.txt requirements/dev.txt
-RUN python -m pip install -r requirements/dev.txt
+ADD requirements-pre-commit.txt requirements-pre-commit.txt
+RUN pip install -r requirements-pre-commit.txt
 ADD .pre-commit-config.yaml .
 RUN git init .
 RUN pre-commit install-hooks
-
-# Cache things before requirements/prod.txt
-ADD requirements/prod.txt requirements/prod.txt
-RUN python -m pip install -r requirements/prod.txt
 
 # Remove /cache directory
 WORKDIR /repo
@@ -37,5 +32,4 @@ RUN rm -r /cache
 
 # Build the repo
 ADD . .
-RUN python -m build
-RUN python -m pip install -e . --no-deps
+RUN poetry install --with dev,pre-commit --no-interaction --no-ansi
