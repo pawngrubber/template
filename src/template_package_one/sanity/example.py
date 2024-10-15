@@ -2,7 +2,7 @@ import numpy as np
 import numpy.typing
 
 
-def arange(number: int) -> np.typing.ArrayLike:
+def arange(number: int) -> np.typing.NDArray[np.int_]:
     return np.arange(number)
 
 
