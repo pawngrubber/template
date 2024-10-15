@@ -76,8 +76,6 @@ repos:
         exclude: ^LICENSE|\.(html|csv|txt|svg|py)$
       - id: pretty-format-json
         args: ["--autofix", "--no-ensure-ascii", "--no-sort-keys"]
-      - id: requirements-txt-fixer
-        args: ["requirements/prod.in", "requirements/dev.in"] # does not work
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]
         exclude: \.(html|svg)$
