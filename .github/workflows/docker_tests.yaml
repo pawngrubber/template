@@ -37,14 +37,14 @@ jobs:
         cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.REPO_NAME }}:cache,mode=max
         outputs: type=docker
     -
-      name: `pytest`
+      name: pytest
       run: docker run ${{ secrets.REPO_NAME }}:gha poetry run pytest
     -
-      name: `mypy`
+      name: mypy
       run: docker run ${{ secrets.REPO_NAME }}:gha poetry run mypy .
     -
-      name: `ruff format`
+      name: ruff format
       run: docker run ${{ secrets.REPO_NAME }}:gha poetry run ruff format
     -
-      name: `ruff check`
+      name: ruff check
       run: docker run ${{ secrets.REPO_NAME }}:gha poetry run ruff check
