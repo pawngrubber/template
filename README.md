@@ -1,29 +1,26 @@
-This repository is a template for future repositories.  Features:
-- Can be packaged with `pip`
+This is a template repository to build on top of:
+- Can be packaged with `poetry`
 - Working `pytest` tests in `tests` directory
-- Install with `requirements/prod.txt` and `requirements/dev.txt`
 - Environment installed inside a Docker Container
 - `README.md` file with repeatable instructions
 - Style checks using `flake8`, `mypy`, and `black` bundled into a single `pre-commit` action
-- GitHub Actions automates style and unit tests across matrixed Python versions
-- Uses Python 3.10 because stable [TensorFlow](https://www.tensorflow.org/install/pip) doesn't yet support Python 3.11
+- Uses Python 3.12
 
 ## Develop without Docker
 1. Create a new Python virtual environment, make sure the version matches the Dockerfile
-2. In this virtual environment, install necessary requirements files
+1. Install `poetry`
     ```
-    python -m pip install -r requirements/dev.txt
-    python -m pip install -r requirements/prod.txt
+    python -m pip install --upgrade pip
+    python -m pip install poetry
     ```
 3. Build and install
     ```
-    python -m build
-    python -m pip install -e . --no-deps
+    python -m poetry install --with dev,pre-commit
     ```
 4. Test things
     ```
-    pre-commit run --all-files
-    pytest
+    poetry run pre-commit run --all-files
+    poetry run pytest
     ```
 
 ## Develop with Docker
@@ -38,22 +35,26 @@ Code development is in a Docker image, use these steps to spin up the image
 5. (Optional) Before pushing changes to `git`, make sure unit and style tests pass in the container
     1. Style tests with `pre-commit`
         ```
-        pre-commit run --all-files
+        poetry run pre-commit run --all-files
         ```
     2. Unit tests with `pytest`
         ```
-        pytest
+        poetry run pytest
         ```
 6. Quit the running container. This will also shut down and delete the container
     ```
     exit
     ```
 
-## Updating requirements directory
-1. Use pip-compile to build a new pinned requirements file.
+## Updating requirements
+1. Use `poetry`
     ```
-    pip-compile requirements/prod.in --output-file=requirements/prod.txt
-    pip-compile requirements/dev.in --output-file=requirements/dev.txt
+    poetry update
+
+    ```
+1. Separate `pre-commit` version (for better Dockerfile staging)
+    ```
+    poetry export --with pre-commit -f requirements.txt --output requirements-pre-commit.txt --without-hashes
     ```
 2. If using Docker, rebuild the container using the commands above.
     ```

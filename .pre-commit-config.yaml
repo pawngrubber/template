@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/PyCQA/isort
-    rev: 5.12.0
+    rev: 5.13.2
     hooks:
       - id: isort
         name: isort
@@ -11,7 +11,7 @@ repos:
         args: ["--profile=black"]
 
   - repo: https://github.com/psf/black
-    rev: 23.1.0
+    rev: 24.10.0
     hooks:
       - id: black
         args:
@@ -20,18 +20,18 @@ repos:
         types: [python]
 
   - repo: https://github.com/asottile/blacken-docs
-    rev: 1.13.0
+    rev: 1.19.0
     hooks:
       - id: blacken-docs
         additional_dependencies: [black==23.1.0]
 
   - repo: https://github.com/kynan/nbstripout
-    rev: 0.6.1
+    rev: 0.7.1
     hooks:
       - id: nbstripout
 
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.6.3
+    rev: 1.8.7
     hooks:
       - id: nbqa-isort
         args: ["--profile=black"]
@@ -56,7 +56,7 @@ repos:
         types: [text]
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v5.0.0
     hooks:
       - id: check-added-large-files
       - id: check-ast
@@ -76,19 +76,12 @@ repos:
         exclude: ^LICENSE|\.(html|csv|txt|svg|py)$
       - id: pretty-format-json
         args: ["--autofix", "--no-ensure-ascii", "--no-sort-keys"]
-      - id: requirements-txt-fixer
-        args: ["requirements/prod.in", "requirements/dev.in"] # does not work
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]
         exclude: \.(html|svg)$
 
-#  - repo: https://github.com/asottile/setup-cfg-fmt
-#    rev: v2.0.0
-#    hooks:
-#      - id: setup-cfg-fmt
-
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.1.1
+    rev: v1.12.0
     hooks:
     -   id: mypy
         args: [--show-error-codes]
@@ -96,7 +89,7 @@ repos:
           - numpy
 
   - repo: https://github.com/PyCQA/flake8
-    rev: 6.0.0
+    rev: 7.1.1
     hooks:
       - id: flake8
         additional_dependencies:
