@@ -28,7 +28,7 @@ jobs:
         python -m pip install poetry
     -
       name: Install dependencies
-        python -m poetry install --with dev,pre-commit --with pre-commit
+      run: python -m poetry install --with dev,pre-commit --with pre-commit
     -
       name: Unit tests
       run: pytest
