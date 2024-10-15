@@ -15,10 +15,10 @@ jobs:
     steps:
     -
       name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     -
       name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: "3.12"
     -
@@ -28,7 +28,7 @@ jobs:
         python -m pip install poetry
     -
       name: Install dependencies
-      run: python -m poetry install --with dev,pre-commit --with pre-commit
+      run: python -m poetry install --with dev,pre-commit
     -
       name: Unit tests
       run: pytest
