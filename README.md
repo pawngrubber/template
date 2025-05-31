@@ -1,5 +1,5 @@
 This is a template repository to build on top of:
-- Can be packaged with `poetry`
+- Uses `uv` for dependency and project management
 - Working `pytest` tests in `tests` directory
 - Environment installed inside a Docker Container
 - `README.md` file with repeatable instructions
@@ -7,21 +7,20 @@ This is a template repository to build on top of:
 
 ## Develop without Docker
 1. Create a new Python virtual environment, make sure the version matches the Dockerfile
-1. Install `poetry`
+1. Install `uv`
     ```
-    python -m pip install --upgrade pip
-    python -m pip install poetry
+    python -m pip install --upgrade uv
     ```
 3. Build and install
     ```
-    python -m poetry install --with dev
+    python -m uv sync --all-extras
     ```
 4. Test things
     ```
-    poetry run ruff check
-    poetry run ruff format
-    poetry run mypy .
-    poetry run pytest
+    python -m uv run ruff check
+    python -m uv run ruff format
+    python -m uv run mypy .
+    python -m uv run pytest
     ```
 
 ## Develop with Docker
@@ -36,13 +35,13 @@ Code development is in a Docker image, use these steps to spin up the image
 5. (Optional) Before pushing changes to `git`, make sure unit and style tests pass in the container
     1. Dev tests with `pre-commit`
         ```
-        poetry run ruff check
-        poetry run ruff format
-        poetry run mypy .
+        python -m uv run ruff check
+        python -m uv run ruff format
+        python -m uv run mypy .
         ```
     2. Unit tests with `pytest`
         ```
-        poetry run pytest
+        python -m uv run pytest
         ```
 6. Quit the running container. This will also shut down and delete the container
     ```
@@ -50,9 +49,9 @@ Code development is in a Docker image, use these steps to spin up the image
     ```
 
 ## Updating requirements
-1. Use `poetry`
+1. Use `uv`
     ```
-    poetry update
+    python -m uv lock --upgrade
     ```
 2. If using Docker, rebuild the container using the commands above.
     ```
