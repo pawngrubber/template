@@ -22,22 +22,22 @@ jobs:
       with:
         python-version: "3.12"
     -
-      name: Install poetry
+      name: Install uv
       run: |
         python -m pip install --upgrade pip
-        python -m pip install poetry
+        python -m pip install --upgrade uv
     -
       name: Install
-      run: python -m poetry install --with dev
+      run: python -m uv sync --all-extras
     -
       name: pytest
-      run: poetry run pytest
+      run: python -m uv run pytest
     - 
       name: mypy
-      run: poetry run mypy .
+      run: python -m uv run mypy .
     - 
       name: ruff format
-      run: poetry run ruff format
+      run: python -m uv run ruff format
     - 
       name: ruff check
-      run: poetry run ruff check
+      run: python -m uv run ruff check

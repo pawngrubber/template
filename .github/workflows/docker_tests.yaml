@@ -38,13 +38,13 @@ jobs:
         outputs: type=docker
     -
       name: pytest
-      run: docker run ${{ secrets.REPO_NAME }}:gha poetry run pytest
+      run: docker run ${{ secrets.REPO_NAME }}:gha python -m uv run pytest
     -
       name: mypy
-      run: docker run ${{ secrets.REPO_NAME }}:gha poetry run mypy .
+      run: docker run ${{ secrets.REPO_NAME }}:gha python -m uv run mypy .
     -
       name: ruff format
-      run: docker run ${{ secrets.REPO_NAME }}:gha poetry run ruff format
+      run: docker run ${{ secrets.REPO_NAME }}:gha python -m uv run ruff format
     -
       name: ruff check
-      run: docker run ${{ secrets.REPO_NAME }}:gha poetry run ruff check
+      run: docker run ${{ secrets.REPO_NAME }}:gha python -m uv run ruff check

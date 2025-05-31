@@ -1,31 +1,28 @@
-[tool.poetry]
+[project]
 name = "template"
 version = "0.1.0"
 description = "Repository template for starting python projects"
-authors = ["pawngrubber <pawngrubber@gmail.com>"]
+authors = [{name = "pawngrubber", email = "pawngrubber@gmail.com"}]
 readme = "README.md"
-packages = [
-    {include = "template_package_one", from = "src"},
-    {include = "template_package_two", from = "src"},
+requires-python = "~=3.12"
+dependencies = [
+  "chess",
+  "numpy",
+  "pandas",
+  "pyarrow",
+  "tqdm",
 ]
 
-[tool.poetry.dependencies]
-python = "^3.12"
-chess = "*"
-numpy = "*"
-pandas = "*"
-pyarrow = "*"
-tqdm = "*"
-
-[tool.poetry.group.dev.dependencies]
-ruff = "*"
-mypy = "*"
-pytest = "*"
-poetry-plugin-export = "*"
+[project.optional-dependencies]
+dev = [
+  "ruff",
+  "mypy",
+  "pytest",
+]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["uv_build>=0.7.9,<0.8.0"]
+build-backend = "uv_build"
 
 [tool.mypy]
 warn_unused_configs = true
