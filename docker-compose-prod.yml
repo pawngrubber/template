@@ -1,7 +1,0 @@
-services:
-
-  prod:
-    build:
-      context: .
-      target: prod
-    image: template:prod

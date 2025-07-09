@@ -2,70 +2,25 @@
 name = "template"
 version = "0.1.0"
 description = "Repository template for starting python projects"
-authors = [{name = "pawngrubber", email = "pawngrubber@gmail.com"}]
+authors = [{ name = "pawngrubber", email = "pawngrubber@gmail.com" }]
 readme = "README.md"
-requires-python = "~=3.12"
-dependencies = [
-  "chess",
-  "numpy",
-  "pandas",
-  "pyarrow",
-  "tqdm",
-]
-
-[project.optional-dependencies]
-dev = [
-  "ruff",
-  "mypy",
-  "pytest",
-]
+requires-python = "~=3.12.0"
+dependencies = ["chess", "numpy"]
 
 [build-system]
-requires = ["uv_build>=0.7.9,<0.8.0"]
+requires = ["uv_build>=0.7.18,<0.8.0"]
 build-backend = "uv_build"
 
-[tool.mypy]
-warn_unused_configs = true
-
-ignore_missing_imports = true
-
-disallow_any_unimported = true
-
-disallow_untyped_defs = true
-disallow_incomplete_defs = true
-
-warn_redundant_casts = true
-warn_unused_ignores = true
-warn_no_return = true
-warn_return_any = true
-warn_unreachable = true
-
-strict_equality = true
-
-show_column_numbers = true
-
-pretty = true
-
-local_partial_types = true
+[dependency-groups]
+dev = ["ruff", "ty", "pytest"]
 
 [tool.ruff]
 line-length = 88
 target-version = "py312"
 
 [tool.ruff.lint]
-extend-select = [
-    'B',
-    'C4',
-    'ISC',
-    'A',
-    'N',
-    'I',
-    'PGH',
-]
-ignore = [
-    "E402",
-    "ISC001",
-]
+extend-select = ['B', 'C4', 'ISC', 'A', 'N', 'I', 'PGH']
+ignore = ["E402", "ISC001"]
 
 [tool.ruff.format]
 quote-style = "double"
