@@ -1,5 +1,3 @@
-# Run python unit tests
-
 name: tests
 
 on:
@@ -11,33 +9,26 @@ on:
 
 jobs:
   unittests:
+    name: python
     runs-on: ubuntu-latest
+
     steps:
-    -
-      name: Checkout code
-      uses: actions/checkout@v4
-    -
-      name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: "3.12"
-    -
-      name: Install uv
-      run: |
-        python -m pip install --upgrade pip
-        python -m pip install --upgrade uv
-    -
-      name: Install
-      run: python -m uv sync --all-extras
-    -
-      name: pytest
-      run: python -m uv run pytest
-    - 
-      name: mypy
-      run: python -m uv run mypy .
-    - 
-      name: ruff format
-      run: python -m uv run ruff format
-    - 
-      name: ruff check
-      run: python -m uv run ruff check
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: "Set up Python"
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "pyproject.toml"
+
+      - name: Install the project
+        run: uv sync --locked --all-extras --dev
+
+      - name: Run tests
+        run: |
+          uv run ruff format
+          uv run ruff check
+          uv run ty check
+          uv run pytest tests
